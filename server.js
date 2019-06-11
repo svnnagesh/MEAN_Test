@@ -14,6 +14,7 @@ const port = 3200;
 
 //routes
 const businessRoute = require('./routes/business.routes');
+const userRoute = require('./routes/user.routes');
 
 //mongoose connection
 mongoose.Promise = global.Promise;
@@ -75,6 +76,8 @@ app.use('/things', things);
 app.use('/contact', contact);
 app.use('/login', login);
 app.use('/business', businessRoute);
+app.use('/user', userRoute);
+
 app.use((req, res, next)=> {
     let token = req.headers.token || req.body.token;
     if(token) {
@@ -93,6 +96,7 @@ app.use((req, res, next)=> {
     }
 })
 app.use('/contact', contact);
+
 
 app.listen(port, () => {
     console.log('Your server connection with port : ' + port);
